@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:external_path/external_path.dart';
 import 'package:flutter/material.dart';
+import 'package:path/path.dart' as path;
 import 'package:permission_handler/permission_handler.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -114,7 +115,38 @@ class _HomeScreenState extends State<HomeScreen> {
           ? Center(child: CircularProgressIndicator())
           : ListView.builder(
               itemCount: _filteredFiles.length,
-              itemBuilder: (context, index) {},
+              itemBuilder: (context, index) {
+                String filePath = _filteredFiles[index];
+                String flieName = path.basename(filePath);
+                return Card(
+                  color: Colors.white,
+                  margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                  elevation: 4,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: ListTile(
+                    title: Text(
+                      flieName,
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    leading: Icon(
+                      Icons.picture_as_pdf,
+                      color: Colors.redAccent,
+                      size: 30,
+                    ),
+                    trailing: Icon(Icons.arrow_forward_ios, size: 18),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => PdfViewerScreen(),
+                        ),
+                      );
+                    },
+                  ),
+                );
+              },
             ),
     );
   }
