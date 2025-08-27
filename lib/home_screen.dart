@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:external_path/external_path.dart';
 import 'package:flutter/material.dart';
+import 'package:mh_reader/pdf_viewer_screen.dart';
 import 'package:path/path.dart' as path;
 import 'package:permission_handler/permission_handler.dart';
 
@@ -140,7 +141,10 @@ class _HomeScreenState extends State<HomeScreen> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => PdfViewerScreen(),
+                          builder: (context) => PdfViewerScreen(
+                            pdfPath: flieName,
+                            pdfName: filePath,
+                          ),
                         ),
                       );
                     },
