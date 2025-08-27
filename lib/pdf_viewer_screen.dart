@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_pdfview/flutter_pdfview.dart';
 
 class PdfViewerScreen extends StatefulWidget {
   final String pdfPath;
@@ -10,8 +11,32 @@ class PdfViewerScreen extends StatefulWidget {
 }
 
 class _PdfViewerScreenState extends State<PdfViewerScreen> {
+  int totalPages = 0;
+  int currentPage = 0;
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        title: Text(widget.pdfName),
+      ),
+      body: PDFView(
+        filePath: widget.pdfPath,
+        pageFling: false,
+        autoSpacing: false,
+        onRender: (pages) {
+          setState(() {
+            totalPages = pages!;
+          });
+        },
+        onPageChanged: (page, total) {
+          setState(() {
+            currentPage = page!;
+          });
+        },
+      ),
+    );
   }
 }

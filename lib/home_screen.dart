@@ -142,8 +142,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         context,
                         MaterialPageRoute(
                           builder: (context) => PdfViewerScreen(
-                            pdfPath: flieName,
-                            pdfName: filePath,
+                            pdfPath: filePath,
+                            pdfName: flieName,
                           ),
                         ),
                       );
@@ -152,6 +152,15 @@ class _HomeScreenState extends State<HomeScreen> {
                 );
               },
             ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          //to refresh list of pdf.
+          baseDirectory();
+        },
+        backgroundColor: Colors.white,
+        foregroundColor: Colors.black,
+        child: Icon(Icons.refresh),
+      ),
     );
   }
 }
