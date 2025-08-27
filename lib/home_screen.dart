@@ -110,6 +110,12 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
+      body: _filteredFiles.isEmpty
+          ? Center(child: CircularProgressIndicator())
+          : ListView.builder(
+              itemCount: _filteredFiles.length,
+              itemBuilder: (context, index) {},
+            ),
     );
   }
 }
